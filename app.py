@@ -5,7 +5,7 @@ st.set_page_config(page_title="Weqaya", layout="wide")
 # Navigation
 PAGES = {
     "Home": r"home_page.py",
-    "Hypertension Prediction": r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\hype\source\first.py",
+    "Hypertension Prediction": r"first.py",
    """ "Diabetes":r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\second.py","""
     "Storke":r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\stroke\main_page.py"
 }
