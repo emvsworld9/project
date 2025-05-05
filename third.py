@@ -277,7 +277,7 @@ def get_fig_age(data):
     plt.tight_layout()
     return fig
 
-risk_factors = st.sidebar.selectbox('Select Risk Factor', ['avg_glucose_level',"BMI",'Hypertension', 'Heart Disease','Age'])
+risk_factor = st.sidebar.selectbox('Select Risk Factor', ['avg_glucose_level',"BMI",'Hypertension', 'Heart Disease','Age'])
 con = st.sidebar.button('Confirm 🆗')
 
 if con :
