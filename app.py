@@ -20,4 +20,4 @@ elif page == "Hypertension":
 elif page == "Diabetes":
     exec(open(PAGES["Diabetes"], encoding="utf-8").read())
 else:
-    exec(open(PAGES["Storke"], encoding="utf-8").read())
+    exec(open(PAGES["Stroke"], encoding="utf-8").read())
