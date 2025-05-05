@@ -6,7 +6,7 @@ st.set_page_config(page_title="Weqaya", layout="wide")
 PAGES = {
     "Home": r"home_page.py",
     "Hypertension": r"first.py",
-    "Storke":r"third.py"
+    "Stroke":r"third.py"
 }
 
 st.sidebar.title("Navigation")
