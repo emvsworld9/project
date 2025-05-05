@@ -7,7 +7,7 @@ PAGES = {
     "Home": r"home_page.py",
     "Hypertension Prediction": r"first.py",
    """ "Diabetes":r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\second.py","""
-    "Storke":r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\stroke\main_page.py"
+    "Storke":r"third.py"
 }
 
 st.sidebar.title("Navigation")
