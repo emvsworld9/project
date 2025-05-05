@@ -9,7 +9,7 @@ import plotly.express as px
 
 # App Title and Intro
 st.title('Hypertension Prediction System ')
-image_url = "https://www.bing.com/images/search?q=hypertension%20photo&FORM=IQFRBA&id=D9E71D220C41AA2D9EEC6C0775CC7D3B6EABD96B"
+image_url = "https://th.bing.com/th/id/R.f8bbb0b5d3a540a4e91daa93a13f24ad?rik=a9mrbjt9zHUHbA&pid=ImgRaw&r=0"
 st.image(image_url, caption="Early detection and prevention of hypertension is key to a healthier life.", use_container_width=True)
 st.write("**Welcome to the Hypertension Prediction System!**\n"
          "This app uses machine learning to predict the likelihood of hypertension based on various health factors.\n"
