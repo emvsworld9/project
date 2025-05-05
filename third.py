@@ -13,14 +13,9 @@ image_url = "https://my.clevelandclinic.org/-/scassets/images/org/patient-experi
 st.image(image_url, caption="Real-time visualization of a deep brain stroke — emphasizing the urgency of early detection and prevention.", use_container_width=True)
 
 
-data_location = r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\stroke\df_cleaned.csv"
+data = pd.read_csv(r"data/stroke_data(40k,11).csv")
 
-@st.cache_data
-def load_data(data_location):
-    data = pd.read_csv(data_location)
-    return data
 
-data = load_data(data_location)
 columns_to_drop = ['work_type', 'Residence_type']
 data.drop(columns=columns_to_drop, axis=1, inplace=True)
 X = data.drop('stroke', axis=1)  # split features
