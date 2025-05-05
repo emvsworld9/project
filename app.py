@@ -16,7 +16,7 @@ page = st.sidebar.radio("Select a page", list(PAGES.keys()))
 if page == "Home":
     exec(open(PAGES["Home"], encoding="utf-8").read())
 elif page == "Hypertension Prediction":
-    exec(open(PAGES["Hypertension Prediction"], encoding="utf-8").read())
+    exec(open(PAGES["Hypertension Prediction"]).read())
 elif page == "Diabetes":
     exec(open(PAGES["Diabetes"], encoding="utf-8").read())
 else:
