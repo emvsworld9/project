@@ -155,10 +155,13 @@ def stream_data():
         time.sleep(0.02)
 
     if result == 1:
+        st.error(f"⚠️ The patient is at risk of hypertension! with {perc}")
+        st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
         for word in end_text.split(" "):
             yield word + " "
             time.sleep(0.02)
     else: 
+             st.success(f"✅ The patient is not at risk of hypertension with {perc}.  ")
              st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
 
 if st.button("**PREDICT**"):
