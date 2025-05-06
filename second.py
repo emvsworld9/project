@@ -14,16 +14,18 @@ st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
 
 # model= joblib.load(r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\random_forest_model.pkl")
 
-MODEL_URL = "https://huggingface.co/Mazenatif/diabetes_model/resolve/main/random_forest_model.pkl"
-def load_model():
-    response = requests.get(MODEL_URL)
-    with open("temp_model.pkl", "wb") as f:
-        f.write(response.content)
-    with open("temp_model.pkl", "rb") as f:
-        model = pickle.load(f)
-    return model
+from huggingface_hub import login, hf_hub_download
 
-model = load_model()
+# Log in with your Hugging Face token
+login(token="your_huggingface_token_here")
+
+# Download the model from Hugging Face
+model_path = hf_hub_download(repo_id="Mazenatif/diabetes_model", filename="random_forest_model.pkl")
+
+# Load the model
+import joblib
+model = joblib.load(model_path)
+
 
 
 # load data
