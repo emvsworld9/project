@@ -28,7 +28,7 @@ def load_model():
 model= load_model()
 
 # load data
-data = pd.read_csv(r'C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\dataset\diabetes(253k,22).csv')
+data = pd.read_csv(r'data/diabetes(253k,22).csv')
 
 
 # Sidebar navigation
