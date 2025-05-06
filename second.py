@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
 
 
-model= joblib.load(r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\random_forest_model.pkl")
+# model= joblib.load(r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\random_forest_model.pkl")
 
 MODEL_URL = "https://huggingface.co/Mazenatif/diabetes_model/blob/main/random_forest_model.pkl"
 
