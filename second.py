@@ -14,16 +14,19 @@ st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
 
 # model= joblib.load(r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\random_forest_model.pkl")
 
-from huggingface_hub import hf_hub_download
+from huggingface_hub import login, hf_hub_download
 
-# Set your Hugging Face authentication token
+# Login with your Hugging Face token
+login(token="your_huggingface_token_here")
+
+# Now you can download the model
 model_path = hf_hub_download(
     repo_id="Mazenatif/diabetes_model",
-    filename="random_forest_model.pkl",
-    use_auth_token="your_huggingface_token_here"
+    filename="random_forest_model.pkl"
 )
 
-# Load the model from the downloaded path
+# Load the model
+import joblib
 model = joblib.load(model_path)
 
 # load data
