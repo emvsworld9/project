@@ -14,7 +14,7 @@ st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
 
 # model= joblib.load(r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\random_forest_model.pkl")
 
-MODEL_URL = r"https://huggingface.co/Mazenatif/diabetes_model/blob/main/random_forest_model.pkl"
+MODEL_URL = r"https://huggingface.co/Mazenatif/diabetes_model/resolve/main/random_forest_model.pkl"
 
 @st.cache_resource
 def load_model():
