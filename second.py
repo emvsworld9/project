@@ -13,23 +13,13 @@ st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
 
 
 # model= joblib.load(r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\random_forest_model.pkl")
-import requests
-import joblib
-from io import BytesIO
-
-# Replace this URL with the actual model link you have
-url = "https://huggingface.co/Mazenatif/diabetes_model/resolve/main/random_forest_model.pkl"
-
-# Download the model file using requests
-response = requests.get(url)
-response.raise_for_status()  # Will raise an error if the download fails
-
-# Load the model from the downloaded content
-model = joblib.load(BytesIO(response.content))
-
-# Now you can use the model as usual
 
 
+
+model_path = 'https://huggingface.co/Mazenatif/diabetes_model/resolve/main/random_forest_model.pkl'
+
+# Load the model
+model = joblib.load(model_path)
 
 
 # load data
