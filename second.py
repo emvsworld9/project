@@ -20,10 +20,7 @@ from huggingface_hub import login, hf_hub_download
 login(token="your_huggingface_token_here")
 
 # Now you can download the model
-model_path = hf_hub_download(
-    repo_id="Mazenatif/diabetes_model",
-    filename="random_forest_model.pkl"
-)
+model_path = hf_hub_download(repo_id="Mazenatif/diabetes_model", filename="random_forest_model.pkl")
 
 # Load the model
 import joblib
