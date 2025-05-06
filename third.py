@@ -278,7 +278,7 @@ def get_fig_age(data):
     return fig
 
 risk_factor = st.sidebar.selectbox('Select Risk Factor', ['avg_glucose_level',"BMI",'Hypertension', 'Heart Disease','Age'])
-con = st.sidebar.button('predict')
+con = st.sidebar.button('show')
 
 if con :
     if risk_factor == 'Hypertension':
