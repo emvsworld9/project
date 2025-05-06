@@ -6,6 +6,7 @@ import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
 import requests
+import pickle 
 
 # Load model
 st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
