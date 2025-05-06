@@ -6,7 +6,6 @@ st.set_page_config(page_title="Weqaya", layout="wide")
 PAGES = {
     "Home": r"home_page.py",
     "Hypertension": r"first.py",
-    #"Diabetes": r"second.py",
     "Stroke":r"third.py"
 }
 
