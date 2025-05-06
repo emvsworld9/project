@@ -19,6 +19,13 @@ if page == "Home":
 elif page == "Hypertension":
     exec(open(PAGES["Hypertension"]).read())
 elif page == "Diabetes":
-    exec(open(PAGES["Diabetes"]).read())
+    with open(PAGES["Diabetes"], "r", encoding="utf-8") as f:
+        content = f.read()
+
+# Clean any bad characters like non-breaking spaces
+    cleaned_content = content.replace("\u00A0", " ")
+
+# Execute the cleaned code
+    exec(cleaned_content)
 else:
     exec(open(PAGES["Stroke"], encoding="utf-8").read())
