@@ -20,7 +20,7 @@ elif page == "Hypertension":
     exec(open(PAGES["Hypertension"]).read())
 elif page == "Diabetes":
     with open(PAGES["Diabetes"], "r", encoding="utf-8") as f:
-    content = f.read()
+        content = f.read()
 
 # Replace bad Unicode characters like non-breaking spaces
     cleaned_content = content.replace("\u00A0", " ")
