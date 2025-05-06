@@ -69,7 +69,7 @@ with st.form(key='prediction_form'):
     with col8:
         avg_glucose_level = st.slider("Select Avg Glucose Level", min_value=50, max_value=270, step=1, value=150)
 
-    submit_button = st.form_submit_button(label='Confirm 🆗')
+    submit_button = st.form_submit_button(label='predict')
 
 
 df = pd.DataFrame({
@@ -278,7 +278,7 @@ def get_fig_age(data):
     return fig
 
 risk_factor = st.sidebar.selectbox('Select Risk Factor', ['avg_glucose_level',"BMI",'Hypertension', 'Heart Disease','Age'])
-con = st.sidebar.button('Confirm 🆗')
+con = st.sidebar.button('predict')
 
 if con :
     if risk_factor == 'Hypertension':
