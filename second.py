@@ -12,6 +12,18 @@ st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
 
 model= joblib.load(r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\random_forest_model.pkl")
 
+MODEL_URL = "https://huggingface.co/Mazenatif/diabetes_model/blob/main/random_forest_model.pkl"
+
+@st.cache_resource
+def load_model():
+    response = requests.get(MODEL_URL)
+    with open("temp_model.pkl", "wb") as f:
+        f.write(response.content)
+    with open("temp_model.pkl", "rb") as f:
+        model = pickle.load(f)
+    return model
+
+model = load_model()
 
 # load data
 data = pd.read_csv(r'C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\dataset\diabetes(253k,22).csv')
