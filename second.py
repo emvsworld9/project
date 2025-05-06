@@ -5,6 +5,7 @@ import joblib
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
+import requests
 
 # Load model
 st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
