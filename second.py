@@ -20,8 +20,7 @@ login(token="your_valid_hugging_face_token_here")
 
 
 
-# Log in with your Hugging Face token
-login(token="your_huggingface_token_here")
+
 
 # Download the model from Hugging Face
 model_path = hf_hub_download(repo_id="Mazenatif/diabetes_model", filename="random_forest_model.pkl")
