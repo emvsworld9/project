@@ -158,6 +158,8 @@ def stream_data():
         for word in end_text.split(" "):
             yield word + " "
             time.sleep(0.02)
+    else: 
+             st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
 
 if st.button("**PREDICT**"):
     st.write_stream(stream_data)
