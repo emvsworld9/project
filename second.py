@@ -13,8 +13,12 @@ st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
 
 
 # model= joblib.load(r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\random_forest_model.pkl")
-
 from huggingface_hub import login, hf_hub_download
+
+# Replace with your actual Hugging Face token
+login(token="your_valid_hugging_face_token_here")
+
+
 
 # Log in with your Hugging Face token
 login(token="your_huggingface_token_here")
