@@ -2,7 +2,7 @@ import streamlit as st
 import time
 # Home Page content
 st.title('Welcome to WEQAYA ')
-st.image("WhatsApp Image 2025-04-01 at 15.13.33_3e6b9be9.jpg", caption="Understanding your health", use_container_width=True)
+st.image("WhatsApp Image 2025-04-01 at 15.13.33_3e6b9be9.jنpg", caption="Understanding your health", use_container_width=True)
 text="**About WEQAYA (وقاية)** \n  \n Weqaya is an intelligent healthcare platform designed to help individuals detect chronic diseases early — such as hypertension, diabetes, and stroke — using advanced artificial intelligence. By analyzing user health data, the system provides instant, data-driven predictions and recommendations, aiming to raise awareness and support preventive care.\n\nوقاية هي منصة رعاية صحية ذكية تهدف إلى مساعدة الأفراد على اكتشاف الأمراض المزمنة مبكرًا — مثل ارتفاع ضغط الدم، والسكري، والسكتة الدماغية — باستخدام تقنيات الذكاء الاصطناعي. من خلال تحليل بيانات المستخدم الصحية، تقدم المنصة تنبؤات فورية وتوصيات قائمة على البيانات، بهدف تعزيز الوعي ودعم الوقاية.\n"
 
 
