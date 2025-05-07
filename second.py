@@ -30,15 +30,25 @@ model = RandomForestClassifier()
 model.fit(X_train, y_train)
 
 # Sidebar form
-st.sidebar.header("Enter patient details")
-gender = st.sidebar.selectbox("Gender", label_encoders['gender'].classes_)
-age = st.sidebar.slider("Age", 0, 120, 30)
-hypertension = st.sidebar.selectbox("Hypertension", [0, 1])
-heart_disease = st.sidebar.selectbox("Heart Disease", [0, 1])
-smoking = st.sidebar.selectbox("Smoking History", label_encoders['smoking_history'].classes_)
-bmi = st.sidebar.number_input("BMI", min_value=10.0, max_value=60.0, value=25.0)
-hba1c = st.sidebar.number_input("HbA1c Level", min_value=2.0, max_value=20.0, value=5.5)
-glucose = st.sidebar.number_input("Blood Glucose Level", min_value=50, max_value=500, value=100)
+st.header("Enter patient details")
+col1, col2 = st.columns(2)
+gender = col1.selectbox("Gender", label_encoders['gender'].classes_,help="Select your gender")
+age = col2.slider("**Age**", 10, 100, 20, help="Enter your age.")
+hypertension_1 = col1.selectbox("**Do you have hypertension**", ["yes","no"], help="Select that you have hypertension or not")
+if hypertension_1 == "yes":
+    hypertension=1
+else:
+    hypertension=0
+heart_disease_1 = col1.selectbox("**Do you have Heart Disease**", ["yes","no"], help="Select that you have Heart Disease or not")
+if heart_disease_1 == "yes":
+    heart_disease=1
+else:
+    heart_disease=0
+smoking = col1.selectbox("Smoking History", label_encoders['smoking_history'].classes_,help="Select your type")
+bmi = col2.slider("**BMI**", 10, 60, 15, step=1, help="Insert your BMI")
+hba1c = col1.slider("**BMI**", 2, 20, 8, step=0.1, help="Insert your BMI")
+glucose = col2.slider("**Blood Glucose Level**", 50, 500, 200, step=1, help="Insert your Blood Glucose Level")
+
 
 # Prepare input data
 if st.sidebar.button("Predict"):
@@ -53,86 +63,56 @@ if st.sidebar.button("Predict"):
         'blood_glucose_level': glucose
     }])
     
-    prediction = model.predict(input_data)[0]
-    st.subheader("Prediction Result")
+   result = model.predict(inputs)
+neg_perc = model.predict_proba(inputs)[0][0]
+pos_perc = model.predict_proba(inputs)[0][1]
     
-    if prediction == 0:
-            st.success("✅ Low Risk: No signs of diabetes or prediabetes.")
-            st.image("https://static.vecteezy.com/system/resources/thumbnails/003/780/944/small_2x/businessman-standing-with-good-health-word-balloon-healthy-lifestyle-concept-vector.jpg", width=600)
+if result == 1:
+    result_text = "**High Risk**: You are at risk for diabetes."
+    result_color = "red"
+else:
+    result_text = "**Low Risk**: You are not at risk for diabetes."
+    result_color = "green"
 
-    elif prediction == 1:
-            st.warning("⚠ Moderate Risk: Prediabetes likely.")
-            st.image("https://i.ytimg.com/vi/uKNft5xAk0E/maxresdefault.jpg", width=600)
-    else:
-            st.error("🚨 High Risk: Diabetes detected.")
-            st.image("https://www.shutterstock.com/shutterstock/photos/2392588533/display_1500/stock-vector-diabetes-concept-tiny-characters-with-medical-equipment-blood-glucose-level-test-doctors-check-2392588533.jpg", width=600)
+perc = f"{max(neg_perc, pos_perc)*100:.2f}%"
 
+st.write("""
+    **Important Reminder**:
+    Hypertension is a serious health condition that should not be ignored. Please consult a doctor for a full diagnosis and treatment plan.
+""")
+start_text = f"""
+Based on the inputs, this program estimates that the patient *{result_text}* with a **{perc}** probability.
+Please note, this is just an estimation. Consult with your doctor for accurate results. We hope you're always in good health.
+"""
 
-# Visualizations tab (placeholder)
-elif menu == "📊 Visualizations":
-    st.subheader("📊 Health Risk Visualizations")
+st.write("-"*50)
+end_text = """
+**Important Warning:**
 
-    @st.cache_resource
-    def get_fig_BMI(data):
-        fig = px.scatter(data, x='BMI', y='Diabetes_012', trendline="ols",
-                        title="Relationship between BMI and Diabetes",
-                        color_discrete_sequence=["#ff7f0e"])
-        fig.update_layout(title=dict(font=dict(size=20, color='blue'), x=0.5, xanchor='center', pad=dict(t=20)),
-                        xaxis_title="BMI ", yaxis_title="Diabetes Risk Probability")
-        return fig
+If you have been diagnosed with or suspect hypertension, please take immediate steps to manage your condition:
 
-    @st.cache_resource
-    def get_fig_Age(data):
-        fig = px.scatter(data, x='Age', y='Diabetes_012', trendline="ols",
-                        title="Relationship between Age and Diabetes",
-                        color_discrete_sequence=["#ff7f0e"])
-        fig.update_layout(title=dict(font=dict(size=20, color='blue'), x=0.5, xanchor='center', pad=dict(t=20)),
-                        xaxis_title="Age", yaxis_title="Diabetes Risk Probability")
-        return fig
+1. **Relax**: Try to stay calm and practice deep breathing exercises.
+2. **Avoid Stimulants**: Limit caffeine, nicotine, and alcohol consumption.
+3. **Stay Hydrated**: Drink plenty of water throughout the day.
+4. **Monitor Your Blood Pressure**: Keep track of your readings using a monitor.
+5. **Eat Healthily**: Prioritize fruits, vegetables, and low-sodium foods.
+6. **Seek Medical Attention if Necessary**: If you experience symptoms like chest pain, dizziness, or difficulty breathing, seek medical help immediately.
+"""
+# Conclusion Text with Delay
+def stream_data():
+    for word in start_text.split(" "):
+        yield word + " "
+        time.sleep(0.02)
 
-    @st.cache_resource
-    def get_fig_PhysHlth(data):
-        fig = px.scatter(data, x='PhysHlth', y='Diabetes_012', trendline="ols",
-                        title="Relationship between PhysHlth and Diabetes",
-                        color_discrete_sequence=["#ff7f0e"])
-        fig.update_layout(title=dict(font=dict(size=20, color='blue'), x=0.5, xanchor='center', pad=dict(t=20)),
-                        xaxis_title="Physical Health", yaxis_title="Diabetes Risk Probability")
-        return fig
-    @st.cache_resource
-    def get_fig_GenHlth(data):
-        fig = px.scatter(data, x='GenHlth', y='Diabetes_012', trendline="ols",
-                        title="Relationship between GenHlth and Diabetes",
-                        color_discrete_sequence=["#ff7f0e"])
-        fig.update_layout(title=dict(font=dict(size=20, color='blue'), x=0.5, xanchor='center', pad=dict(t=20)),
-                        xaxis_title="Genral Health", yaxis_title="Diabetes Risk Probability")
-        return fig
-    @st.cache_resource
-    def get_fig_MentHlth(data):
-        fig = px.scatter(data, x='MentHlth', y='Diabetes_012', trendline="ols",
-                        title="Relationship between MentHlth and Diabetes",
-                        color_discrete_sequence=["#ff7f0e"])
-        fig.update_layout(title=dict(font=dict(size=20, color='blue'), x=0.5, xanchor='center', pad=dict(t=20)),
-                        xaxis_title="Mental Health", yaxis_title="Diabetes Risk Probability")
-        return fig
+    if result == 1:
+        st.error(f"⚠️ The patient is at risk of diabetes! with {perc}")
+        st.image("https://media.mehrnews.com/d/2018/11/05/4/2947868.jpg", width=600)
+        for word in end_text.split(" "):
+            yield word + " "
+            time.sleep(0.02)
+    else: 
+             st.success(f"✅ The patient is not at risk of diabetes with {perc}.  ")
+             st.image("https://astrologer.swayamvaralaya.com/wp-content/uploads/2012/08/health1.jpg", width=600)
 
-
-   
-    risk_factor = st.sidebar.selectbox('Select Risk Factor', ['BMI', 'Age','Physical Health', 'Mental Health','Genral Health'])
-    con = st.sidebar.button('Confirm')
-
-    if con:
-        if risk_factor == 'BMI':
-            st.plotly_chart(get_fig_BMI(data), use_container_width=True)
-            st.write("As Body Mass Index (BMI) increases, the likelihood of diabetes generally rises.")
-        elif risk_factor == 'Age':
-            st.plotly_chart(get_fig_Age(data), use_container_width=True)
-            st.write("Older age groups show a higher probability of having diabetes or prediabetes.")
-        elif risk_factor =='Physical Health':
-            st.plotly_chart(get_fig_PhysHlth(data),use_container_width=True)
-            st.write(" More days of poor physical health are associated with increased diabetes risk.")
-        elif risk_factor =='Mental Health':
-            st.plotly_chart(get_fig_MentHlth(data),use_container_width=True)
-            st.write(" More days of poor Mental health are associated with increased diabetes risk.")
-        else:
-            st.plotly_chart(get_fig_GenHlth(data), use_container_width=True)
-            st.write("Self-rated general health (on a scale from excellent to poor) strongly correlates with diabetes presence.")
+if st.button("**PREDICT**"):
+    st.write_stream(stream_data)
