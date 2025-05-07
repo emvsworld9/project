@@ -46,7 +46,7 @@ else:
     heart_disease=0
 smoking = col1.selectbox("Smoking History", label_encoders['smoking_history'].classes_,help="Select your type")
 bmi = col2.slider("**BMI**", 10, 60, 15, step=1, help="Insert your BMI")
-hba1c = col1.slider("**BMI**", 2, 20, 8, step=0.1, help="Insert your BMI")
+hba1c = col1.slider("**HbA1c Level**", 2, 20, 8, step=0.1, help="Insert your HbA1c Level")
 glucose = col2.slider("**Blood Glucose Level**", 50, 500, 200, step=1, help="Insert your Blood Glucose Level")
 
 
