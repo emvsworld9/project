@@ -7,6 +7,8 @@ from sklearn.metrics import accuracy_score
 import time
 from imblearn.over_sampling import SMOTE
 from imblearn.over_sampling import RandomOverSampler 
+from imblearn.pipeline import Pipeline
+
 
 # Title
 st.title("Diabetes Risk Prediction App")
