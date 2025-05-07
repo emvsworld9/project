@@ -63,7 +63,7 @@ if st.sidebar.button("Predict"):
         'blood_glucose_level': glucose
     }])
     
-   result = model.predict(input_data)
+result = model.predict(input_data)
 neg_perc = model.predict_proba(input_data)[0][0]
 pos_perc = model.predict_proba(input_data)[0][1]
     
