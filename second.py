@@ -12,28 +12,7 @@ import pickle
 st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
 
 
-# model= joblib.load(r"C:\Users\VICTUS\Desktop\DEPI team\FINAL PROJECT\diab\source\random_forest_model.pkl")
-import requests
-import joblib
-from io import BytesIO
 
-# URL of the model
-model_url = 'https://huggingface.co/Mazenatif/diabetes_model/resolve/main/random_forest_model.pkl'
-
-# Send a GET request to the model URL
-response = requests.get(model_url)
-
-# Check if the request was successful (HTTP status code 200)
-if response.status_code == 200:
-    # Load the model from the downloaded content
-    model = joblib.load(BytesIO(response.content))
-    print("Model loaded successfully!")
-else:
-    print(f"Failed to download the model. Status code: {response.status_code}")
-
-
-
-# load data
 data = pd.read_csv(r'data/diabetes(253k,22).csv')
 
 
