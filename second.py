@@ -69,7 +69,7 @@ if st.sidebar.button("Predict"):
 
 
 # Visualizations tab (placeholder)
-if menu == "📊 Visualizations":
+elif menu == "📊 Visualizations":
     st.subheader("📊 Health Risk Visualizations")
 
     @st.cache_resource
