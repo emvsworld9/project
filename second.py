@@ -52,8 +52,8 @@ glucose = col2.slider("**Blood Glucose Level**", 50, 500, 200, step=1, help="Ins
 
 # Prepare input data
 result=''
-neg_perc=''
-pos_perc=''
+neg_perc=0
+pos_perc=0
 if st.sidebar.button("Predict"):
     input_data= pd.DataFrame([{
         'gender': label_encoders['gender'].transform([gender])[0],
