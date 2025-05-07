@@ -5,6 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import time
+from imblearn.over_sampling import SMOTE
 
 # Title
 st.title("Diabetes Risk Prediction App")
