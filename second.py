@@ -92,7 +92,7 @@ perc = f"{max(neg_perc, pos_perc)*100:.2f}%"
 
 st.write("""
     **Important Reminder**:
-    Hypertension is a serious health condition that should not be ignored. Please consult a doctor for a full diagnosis and treatment plan.
+    Diabetes is a serious health condition that should not be ignored. Please consult a doctor for a full diagnosis and treatment plan.
 """)
 start_text = f"""
 Based on the inputs, this program estimates that the patient *{result_text}* with a **{perc}** probability.
@@ -103,15 +103,18 @@ st.write("-"*50)
 end_text = """
 **Important Warning:**
 
-If you have been diagnosed with or suspect hypertension, please take immediate steps to manage your condition:
+If you have been diagnosed with or suspect diabetes, please take immediate steps to manage your condition:
 
-1. **Relax**: Try to stay calm and practice deep breathing exercises.
-2. **Avoid Stimulants**: Limit caffeine, nicotine, and alcohol consumption.
-3. **Stay Hydrated**: Drink plenty of water throughout the day.
-4. **Monitor Your Blood Pressure**: Keep track of your readings using a monitor.
-5. **Eat Healthily**: Prioritize fruits, vegetables, and low-sodium foods.
-6. **Seek Medical Attention if Necessary**: If you experience symptoms like chest pain, dizziness, or difficulty breathing, seek medical help immediately.
+1. **Monitor Your Blood Sugar**: Regularly check your blood sugar levels to stay on top of your condition.
+2. **Eat Balanced Meals**: Focus on a balanced diet with whole grains, lean proteins, healthy fats, and plenty of vegetables.
+3. **Stay Active**: Incorporate regular physical activity to help regulate blood sugar levels.
+4. **Stay Hydrated**: Drink plenty of water throughout the day to stay hydrated.
+5. **Avoid Sugary Foods and Drinks**: Limit the consumption of high-sugar foods and beverages.
+6. **Manage Stress**: Practice relaxation techniques like deep breathing or meditation to help manage stress levels.
+7. **Seek Medical Attention if Necessary**: If you experience symptoms like excessive thirst, frequent urination, blurry vision, or fatigue, seek medical help immediately.
+
 """
+
 # Conclusion Text with Delay
 def stream_data():
     for word in start_text.split(" "):
