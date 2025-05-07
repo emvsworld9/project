@@ -52,9 +52,8 @@ glucose = col2.slider("**Blood Glucose Level**", 50, 500, 200, step=1, help="Ins
 
 
 # Prepare input data
-result=''
-neg_perc=0
-pos_perc=0
+
+input_data=None 
 if st.sidebar.button("Predict"):
     input_data= pd.DataFrame([{
         'gender': label_encoders['gender'].transform([gender])[0],
@@ -67,9 +66,9 @@ if st.sidebar.button("Predict"):
         'blood_glucose_level': glucose
     }])
     
-    result = model.predict(input_data)
-    neg_perc = model.predict_proba(input_data)[0][0]
-    pos_perc = model.predict_proba(input_data)[0][1]
+result = model.predict(input_data)
+neg_perc = model.predict_proba(input_data)[0][0]
+pos_perc = model.predict_proba(input_data)[0][1]
     
 if result == 1:
     result_text = "**High Risk**: You are at risk for diabetes."
