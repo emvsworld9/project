@@ -63,9 +63,9 @@ if st.sidebar.button("Predict"):
         'blood_glucose_level': glucose
     }])
     
-   result = model.predict(inputs)
-neg_perc = model.predict_proba(inputs)[0][0]
-pos_perc = model.predict_proba(inputs)[0][1]
+   result = model.predict(input_data)
+neg_perc = model.predict_proba(input_data)[0][0]
+pos_perc = model.predict_proba(input_data)[0][1]
     
 if result == 1:
     result_text = "**High Risk**: You are at risk for diabetes."
