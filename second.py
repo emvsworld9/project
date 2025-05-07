@@ -56,14 +56,14 @@ if st.sidebar.button("Predict"):
     prediction = model.predict(input_data)[0]
     st.subheader("Prediction Result")
     
-        if prediction == 0:
+    if prediction == 0:
             st.success("✅ Low Risk: No signs of diabetes or prediabetes.")
             st.image("https://static.vecteezy.com/system/resources/thumbnails/003/780/944/small_2x/businessman-standing-with-good-health-word-balloon-healthy-lifestyle-concept-vector.jpg", width=600)
 
-        elif prediction == 1:
+    elif prediction == 1:
             st.warning("⚠ Moderate Risk: Prediabetes likely.")
             st.image("https://i.ytimg.com/vi/uKNft5xAk0E/maxresdefault.jpg", width=600)
-        else:
+    else:
             st.error("🚨 High Risk: Diabetes detected.")
             st.image("https://www.shutterstock.com/shutterstock/photos/2392588533/display_1500/stock-vector-diabetes-concept-tiny-characters-with-medical-equipment-blood-glucose-level-test-doctors-check-2392588533.jpg", width=600)
 
