@@ -54,8 +54,8 @@ if st.sidebar.button("Predict"):
     }])
     
     prediction = model.predict(input_data)[0]
-
-        st.subheader("Prediction Result")
+    st.subheader("Prediction Result")
+    
         if prediction == 0:
             st.success("✅ Low Risk: No signs of diabetes or prediabetes.")
             st.image("https://static.vecteezy.com/system/resources/thumbnails/003/780/944/small_2x/businessman-standing-with-good-health-word-balloon-healthy-lifestyle-concept-vector.jpg", width=600)
