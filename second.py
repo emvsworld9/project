@@ -1,67 +1,59 @@
 import streamlit as st
-import numpy as np
 import pandas as pd
-import joblib
-import plotly.express as px
-import seaborn as sns
-import matplotlib.pyplot as plt
-import requests
-import pickle 
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 
-# Load model
-st.title("🩺 Disease & Prediabetes Risk Prediction Dashboard")
+# Title
+st.title("Diabetes Risk Prediction App")
 
+# Load the dataset
+df = pd.read_csv("diabetes_prediction_dataset.csv")
 
+# Encode categorical variables
+label_encoders = {}
+for col in ['gender', 'smoking_history']:
+    le = LabelEncoder()
+    df[col] = le.fit_transform(df[col])
+    label_encoders[col] = le
 
-data = pd.read_csv(r'data/diabetes(253k,22).csv')
+# Define features and target
+X = df.drop('diabetes', axis=1)
+y = df['diabetes']
 
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Sidebar navigation
-menu = st.sidebar.radio("Navigate", [ "📋 Predict", "📊 Visualizations"])
+# Train model
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
 
+# Sidebar form
+st.sidebar.header("Enter patient details")
+gender = st.sidebar.selectbox("Gender", label_encoders['gender'].classes_)
+age = st.sidebar.slider("Age", 0, 120, 30)
+hypertension = st.sidebar.selectbox("Hypertension", [0, 1])
+heart_disease = st.sidebar.selectbox("Heart Disease", [0, 1])
+smoking = st.sidebar.selectbox("Smoking History", label_encoders['smoking_history'].classes_)
+bmi = st.sidebar.number_input("BMI", min_value=10.0, max_value=60.0, value=25.0)
+hba1c = st.sidebar.number_input("HbA1c Level", min_value=2.0, max_value=20.0, value=5.5)
+glucose = st.sidebar.number_input("Blood Glucose Level", min_value=50, max_value=500, value=100)
 
-# Prediction tab
-if menu == "📋 Predict":
-    st.subheader("🧾 Enter Patient Information")
-
-    with st.form("prediction_form"):
-        col1, col2 = st.columns(2)
-        with col1:
-            HighBP = st.selectbox("High Blood Pressure", ['No', 'Yes'])
-            HighChol = st.selectbox("High Cholesterol", ['No', 'Yes'])
-            CholCheck = st.selectbox("}holesterol check in 5 years?", ['No', 'Yes'])
-            BMI = st.slider("Body Mass Index (BMI)", 0, 45, 25)
-            Smoker = st.selectbox("Smoker (Have you smoked at least 100 cigarettes in your entire life?)", ['No', 'Yes'])
-            Stroke = st.selectbox("History of Stroke", ['No', 'Yes'])
-            HeartDiseaseorAttack = st.selectbox("Heart Disease/Attack", ['No', 'Yes'])
-            PhysActivity = st.selectbox("Physical activity in past 30 days (not including job)", ['No', 'Yes'])
-            Fruits = st.selectbox("Eats Fruits", ['No', 'Yes'])
-            Veggies = st.selectbox("Eats Vegetables", ['No', 'Yes'])
-
-        with col2:
-            HvyAlcoholConsump = st.selectbox("Heavy Alcohol (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)", ['No', 'Yes'])
-            AnyHealthcare = st.selectbox("Has Healthcare Coverage", ['No', 'Yes'])
-            NoDocbcCost = st.selectbox("Cost Prevents Doctor Visit", ['No', 'Yes'])
-            GenHlth = st.slider("General Health (1=Excellent to 5=Poor)", 1, 5)
-            MentHlth = st.slider("how many days during the past 30 days was your mental health not good?", 0, 30)
-            PhysHlth = st.slider("how many days during the past 30 days was your physical health not good?", 0, 30)
-            DiffWalk = st.selectbox("Difficulty Walking", ['No', 'Yes'])
-            Sex = st.selectbox("Sex", ['Female', 'Male'])
-            Age = st.slider("Age Group Code (level 1 >> 18:24 (Each level increases by 4 years) )", 1, 13)
-
-        submitted = st.form_submit_button("🔍 Predict")
-
-    if submitted:
-        # Convert inputs to binary
-        def bin(x): return 1 if x == 'Yes' else 0
-        sex_val = 1 if Sex == 'Male' else 0
-
-        features = np.array([[bin(HighBP), bin(HighChol), bin(CholCheck), BMI, bin(Smoker), bin(Stroke),
-                              bin(HeartDiseaseorAttack), bin(PhysActivity), bin(Fruits), bin(Veggies),
-                              bin(HvyAlcoholConsump), bin(AnyHealthcare), bin(NoDocbcCost), GenHlth,
-                              MentHlth, PhysHlth, bin(DiffWalk), sex_val, Age]])
-
-        prediction = model.predict(features)[0]
+# Prepare input data
+if st.sidebar.button("Predict"):
+    input_data = pd.DataFrame([{
+        'gender': label_encoders['gender'].transform([gender])[0],
+        'age': age,
+        'hypertension': hypertension,
+        'heart_disease': heart_disease,
+        'smoking_history': label_encoders['smoking_history'].transform([smoking])[0],
+        'bmi': bmi,
+        'HbA1c_level': hba1c,
+        'blood_glucose_level': glucose
+    }])
+    
+    prediction = model.predict(input_data)[0]
 
         st.subheader("Prediction Result")
         if prediction == 0:
