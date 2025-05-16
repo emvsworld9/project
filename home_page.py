@@ -88,7 +88,7 @@ st.markdown('<p class="subtitle">AI-Powered Preventive Healthcare Platform</p>',
 # Hero Image
 col1, col2, col3 = st.columns([1, 8, 1])
 with col2:
-    hero_img = "AI_"jpg
+    hero_img = "AI_1.jpg"
     st.image(hero_img, caption="AI in Healthcare")
 
 # ---------- KEY FEATURES ----------
