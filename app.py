@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(page_title="Weqaya", layout="wide")
 # Navigation
 PAGES = {
-    "Home": r"home_page.py",
+    "Home": r"home_page_1.py",
     "Hypertension": r"first.py",
     "Diabetes":r"second.py",
     "Stroke":r"third.py"
