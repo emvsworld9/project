@@ -81,7 +81,7 @@ st.subheader("Enter Your Information Below")
 col1, col2 = st.columns(2)
 
 age = col1.slider("**Age**", 10, 100, 20, help="Enter your age.")
-sex = col2.selectbox("**Sex**", ["Male", "Female"], help="Select your gender.")
+sex = col2.selectbox("**Gender**", ["Male", "Female"], help="Select your gender.")
 sex = 1 if sex == "Male" else 0
 
 cp = col1.selectbox("**Chest Pain Type**", ["Asymptomatic", "Typical Angina", "Atypical Angina", "Non-anginal Pain"], help="Select the type of chest pain.")
